@@ -1,0 +1,10 @@
+types: ./types.graphql
+functions:
+  FB Authentication:
+    handler:
+      code:
+        src: ./code/facebook-authentication.js
+    type: schemaExtension
+    schema: ./code/facebook-authentication.graphql
+rootTokens:
+- facebook-login
