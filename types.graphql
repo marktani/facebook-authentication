@@ -1,3 +1,5 @@
 type User implements Node {
   id: ID! @isUnique
   facebookUserId: String @isUnique
+  facebookEmail: String
+}

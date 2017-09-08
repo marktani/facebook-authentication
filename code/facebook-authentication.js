@@ -40,6 +40,7 @@ module.exports = function(event) {
       mutation {
         createUser(
           facebookUserId: "${facebookUser.id}"
+          facebookEmail: "${facebookUser.email}"
         ) {
           id
         }
