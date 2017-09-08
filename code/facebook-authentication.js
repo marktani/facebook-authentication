@@ -22,7 +22,7 @@ module.exports = function(event) {
   function getGraphcoolUser(facebookUser) {
     return api.request(`
     query {
-      User(facebookUserId: "${facebookUser.id}"){
+      User(facebookUserId: "${facebookUser.id}") {
         id
       }
     }`)
@@ -39,8 +39,8 @@ module.exports = function(event) {
     return api.request(`
       mutation {
         createUser(
-          facebookUserId:"${facebookUser.id}"
-        ){
+          facebookUserId: "${facebookUser.id}"
+        ) {
           id
         }
       }`)
@@ -66,9 +66,18 @@ module.exports = function(event) {
     })
     .then(generateGraphcoolToken)
     .then((token) => {
-      return { data: { token: token } }
+      return {
+        data: {
+          token: token
+        }
+      }
     })
     .catch((error) => {
-      return { error: error.toString() }
+      console.log(error)
+
+      // don't expose error message to client!
+      return {
+        error: 'An unexpected error occured.'
+      }
     })
 }
